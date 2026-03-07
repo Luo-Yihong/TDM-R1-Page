@@ -3,6 +3,8 @@
   ====================
   IMAGES TO REPLACE: Place the following files in the `figs/` folder next to this index.html.
   PDF figures from the paper should be converted to PNG/JPG format first.
+  LOGOS: Place institution logos in the `logos/` folder (same filenames as in Arxiv/logos/):
+    logos/UST_L4.png, logos/UST-GZ_4C_L4.png, logos/cuhksz.png, logos/68fb81d9fd1aef0f466fff2fe222f631.jpg
   LINKS TO UPDATE:
     - Paper arXiv link: search for "https://arxiv.org/abs/TODO" and replace TODO with the arXiv ID
     - BibTeX eprint:   search for "eprint={TODO}" and replace TODO with the arXiv ID
@@ -49,6 +51,19 @@
     font-weight: bold;
     color: #1E88E5;
   }
+  .inst-logos {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 12px 0 16px 0;
+  }
+  .inst-logos img {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+  }
 </style>
 
 </head>
@@ -57,6 +72,13 @@
 <!-- ========== Header ========== -->
 <div class="content">
   <h1><strong>TDM-R1: Reinforcing Few-Step Diffusion Models<br>with Non-Differentiable Reward</strong></h1>
+  <!-- 机构 logo：请将 Arxiv/logos 下的同名文件放到 logos/ 目录 -->
+  <div style="display: flex; justify-content: center; align-items: center; gap: 24px; margin-top: 12px; margin-bottom: 8px; flex-wrap: wrap;">
+    <img src="logos/UST_L4.png" alt="HKUST" style="height: 40px;">
+    <img src="logos/UST-GZ_4C_L4.png" alt="HKUST(GZ)" style="height: 40px;">
+    <img src="logos/cuhksz.png" alt="CUHK-Shenzhen" style="height: 40px;">
+    <img src="logos/68fb81d9fd1aef0f466fff2fe222f631.jpg" alt="Xiaohongshu" style="height: 40px;">
+  </div>
   <p id="authors" class="serif">
     <a href="https://luo-yihong.github.io/">Yihong Luo<sup>1</sup></a>
     <a href="https://hu-tianyang.github.io">Tianyang Hu<sup>2</sup></a>
