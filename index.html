@@ -114,7 +114,7 @@
 
 
 <!-- ========== Abstract ========== -->
-<div class="content">
+<!-- <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Abstract</p>
   <p style="font-size: 1.2em" class="serif">
     While few-step generative models have enabled powerful image and video generation at significantly lower cost,
@@ -130,6 +130,25 @@
     We conduct extensive experiments ranging from text-rendering, visual quality, and preference alignment.
     All results demonstrate that TDM-R1 is a powerful reinforcement learning paradigm for few-step text-to-image models,
     achieving state-of-the-art reinforcement learning performances on both in-domain and out-of-domain metrics.
+    Furthermore, TDM-R1 also scales effectively to the recent strong Z-Image model,
+    consistently outperforming both its 100-NFE and few-step variants with only 4 NFEs.
+  </p>
+</div> -->
+<div class="content">
+  <p style="font-size: 1.2em" class="serif">
+    While few-step generative models have enabled powerful image and video generation at significantly lower cost,
+    <b style="color: blue;">generic reinforcement learning (RL) paradigms for few-step models remain an unsolved problem</b>.
+    Existing RL approaches for few-step diffusion models strongly rely on back-propagating through differentiable reward models,
+    <b>thereby excluding the majority of important real-world reward signals</b>, e.g., non-differentiable rewards such as humans' binary likeness, object counts, etc.
+    <b style="color: blue;">To properly incorporate non-differentiable rewards to improve few-step generative models,
+    we introduce TDM-R1, a novel reinforcement learning paradigm built upon a leading few-step model,
+    Trajectory Distribution Matching (TDM)</b>.
+    TDM-R1 decouples the learning process into <em>surrogate reward learning</em> and <b><em>generator learning</em></b>.
+    Furthermore, we developed practical methods to obtain per-step reward signals along the deterministic generation trajectory of TDM,
+    resulting in a unified RL post-training method that significantly improves few-step models' ability with generic rewards.
+    We conduct extensive experiments ranging from text-rendering, visual quality, and preference alignment.
+    All results demonstrate that <b style="color: blue;">TDM-R1 is a powerful reinforcement learning paradigm for few-step text-to-image models,
+    achieving state-of-the-art reinforcement learning performances on both in-domain and out-of-domain metrics</b>.
     Furthermore, TDM-R1 also scales effectively to the recent strong Z-Image model,
     consistently outperforming both its 100-NFE and few-step variants with only 4 NFEs.
   </p>
@@ -185,20 +204,20 @@
 <div class="content">
   <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">Methodology</p>
   <p style="font-size: 1.2em" class="serif">
-    TDM-R1 addresses reinforcement learning of few-step diffusion models through three key components:
+    TDM-R1 addresses reinforcement learning via non-differentiable reward of few-step diffusion models through three key components:
     <br><br>
-    <b>1) Accurate Intermediate Reward Estimation via Deterministic Trajectories.</b>
+    <b style="color: blue;">1)Accurate Intermediate Reward Estimation via Deterministic Trajectories.</b>
     TDM-R1 is built upon TDM, which performs sampling via deterministic (ODE) trajectories.
     This enables unbiased reward estimation for every intermediate denoising step along the trajectory,
     significantly reducing variance compared to stochastic (SDE) sampling and enabling faster convergence.
     <br><br>
-    <b>2) Surrogate Reward Learning.</b>
+    <b style="color: blue;">2) Surrogate Reward Learning.</b>
     To handle non-differentiable reward signals, TDM-R1 learns a diffusion-parameterized Surrogate Reward via
-    group-based preference optimization (inspired by GRPO). The surrogate reward provides fine-grained,
+    group-based preference optimization (inspired by GRPO and DGPO). The surrogate reward provides fine-grained,
     differentiable guidance at each step along the trajectory. A Dynamic Reference Model (EMA of the reward model)
     stabilizes training and prevents overfitting to noisy signals.
     <br><br>
-    <b>3) Few-Step Generator Learning.</b>
+    <b style="color: blue;">3) Few-Step Generator Learning.</b>
     The few-step generator is trained to maximize the Surrogate Reward while maintaining a reverse KL regularization
     with respect to the pretrained teacher diffusion model at the distribution level—
     a less restrictive constraint than the instance-level KL used in standard diffusion RL.
